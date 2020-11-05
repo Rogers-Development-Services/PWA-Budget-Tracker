@@ -46,6 +46,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="/db.js"></script>
   <script src="index.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
@@ -57,6 +58,41 @@
       });
     }
   </script>
+
+  <!-- Local Forage -->
+  <!-- <script src="localforage/dist/localforage.js"></script> -->
+
+  <!-- IndexedDB -->
+  <!-- <script>
+
+    // We request a database instance.
+    const request = window.indexedDB.open("budget", 1);
+
+    // Create Schema
+    let db; //before the request
+    request.onupgradeneeded = event => {
+      db = event.target.result;
+
+      // Create an object store inside the onupgradeneeded method.  THIS IS IMPORTANT AND UNIQUE
+      const budgetStore = db.createObjectStore("budget");
+    };
+
+    // This returns a result that we can then manipulate.
+    request.onsuccess = event => {
+      console.log(request.result); //this result will be the connection to the database
+      const db = request.result;
+      const transactionStore
+    };
+
+    function save(item) {
+      const transaction = db.transaction(["budget"], "readwrite");
+      const budgetStore = transaction.objectStore("budget");
+
+      budgetStore.add(item);  //item is already an object
+
+    };
+  </script> -->
+
 </body>
 
 </html>

@@ -1,3 +1,44 @@
+// const localForage = requrire("localforage");
+
+// localForage.setItem('transaction', value).then(function () {
+//   return localForage.getItem('key');
+// }).then(function (value) {
+//   console.log("Budget has ben saved", value);
+// }).catch(function (err) {
+//   console.log("error: \n", err)
+// });
+
+// --- 2nd attempt ---
+
+// localforage.setDriver([
+//   localforage.INDEXEDDB,
+//   localforage.WEBSQL,
+//   localforage.LOCALSTORAGE
+// ]).then(function () {
+//   var key = 'STORE_KEY';
+//   // var value = 'What we save offline';
+//   var value = 'asdf';
+//   value[0] = 65
+//   // var value = undefined;
+//   var UNKNOWN_KEY = 'unknown_key';
+
+//   localforage.setItem(key, value, function() {
+//     console.log('Using:' + localforage.driver());
+//     console.log('Saved: ' + value);
+
+//     localforage.getItem(key).then(function(readValue) {
+//       console.log('Read: ', readValue);
+//     });
+
+//     // Since this key hasn't been set yet, we'll get a null value
+//     localforage.getItem(UNKNOWN_KEY, function(err, readValue) {
+//       console.log('Result of reading ' + UNKNOWN_KEY, readValue);
+//     });
+//   });
+// });
+
+// -----------------------------------------
+
 let transactions = [];
 let myChart;
 
@@ -66,14 +107,14 @@ function populateChart() {
 
   myChart = new Chart(ctx, {
     type: 'line',
-      data: {
-        labels,
-        datasets: [{
-            label: "Total Over Time",
-            fill: true,
-            backgroundColor: "#6666ff",
-            data
-        }]
+    data: {
+      labels,
+      datasets: [{
+        label: "Total Over Time",
+        fill: true,
+        backgroundColor: "#6666ff",
+        data
+      }]
     }
   });
 }
@@ -111,7 +152,7 @@ function sendTransaction(isAdding) {
   populateChart();
   populateTable();
   populateTotal();
-  
+
   // also send to server
   fetch("/api/transaction", {
     method: "POST",
@@ -121,33 +162,63 @@ function sendTransaction(isAdding) {
       "Content-Type": "application/json"
     }
   })
-  .then(response => {    
-    return response.json();
-  })
-  .then(data => {
-    if (data.errors) {
-      errorEl.textContent = "Missing Information";
-    }
-    else {
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      if (data.errors) {
+        errorEl.textContent = "Missing Information";
+      }
+      else {
+        // clear form
+        nameEl.value = "";
+        amountEl.value = "";
+      }
+    })
+    .catch(err => {
+      // fetch failed, so save in indexed db
+      // console.log("Fetch Failed Test", err);
+      // console.log("This is the transaction",transaction);
+      saveRecord(transaction);
+
       // clear form
       nameEl.value = "";
       amountEl.value = "";
-    }
-  })
-  .catch(err => {
-    // fetch failed, so save in indexed db
-    saveRecord(transaction);
-
-    // clear form
-    nameEl.value = "";
-    amountEl.value = "";
-  });
+    });
 }
 
-document.querySelector("#add-btn").onclick = function() {
+// function saveRecord(transaction) {
+//   console.log("inside savedRecord", transaction);
+//   // push in the offline transaction obj into the transaction array
+//   transactions.push(transaction);
+//   console.log("Here is the new transaction array", transactions);
+// };
+
+//   localForage.setItem('budget', transaction).then(() => {
+//     console.log("Budget has ben saved");
+//   })
+// };
+
+// function getDataFromForage(key) {
+//   if (!localForage.getItem(key)) return;
+//   else {
+//     localForage.getItem(key);
+//   }
+// }
+
+// getDataFromForage('budget').then((response) => {
+//   console.log('here', response);
+// });
+
+// save offline transactions in indexDB or local storage
+// when you come back online, check local storage or indexed DB for the offline transactions and compare to the online Atlas DB
+// Store "isAdding" as true or false in the sendTransaction()
+// Run each of the offline transactions through a new (simlar) sendTransaction function
+
+document.querySelector("#add-btn").onclick = function () {
   sendTransaction(true);
 };
 
-document.querySelector("#sub-btn").onclick = function() {
+document.querySelector("#sub-btn").onclick = function () {
   sendTransaction(false);
 };
