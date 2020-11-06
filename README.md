@@ -1,63 +1,102 @@
-# Unit 18 PWA Homework: Online/Offline Budget Trackers
+# PWA-Budget-Tracker
 
-Add functionality to our existing Budget Tracker application to allow for offline access and functionality.
-
-The user will be able to add expenses and deposits to their budget with or without a connection. When entering transactions offline, they should populate the total when brought back online.
-
-Offline Functionality:
-
-  * Enter deposits offline
-
-  * Enter expenses offline
-
-When brought back online:
-
-  * Offline entries should be added to tracker.
-
-## User Story
-AS AN avid traveller
-I WANT to be able to track my withdrawals and deposits with or without a data/internet connection
-SO THAT my account balance is accurate when I am traveling
-
-## Business Context
+![License: MIT](https://img.shields.io/badge/license-MIT%20License-blue.svg) </br>
+![badge: Made With-JavaScript](https://img.shields.io/badge/Made%20With-JavaScript-Yellow) ![badge: Made With-CSS3](https://img.shields.io/badge/Made%20With-CSS3-Yellow) ![badge: Made With-HTML5](https://img.shields.io/badge/Made%20With-HTML5-Yellow) </br>
+![badge: Uses-compression](https://img.shields.io/badge/Uses-express-red) ![badge: Uses-morgan](https://img.shields.io/badge/Uses-morgan-red) ![badge: Uses-MongoDB](https://img.shields.io/badge/Uses-Mongo-orange) ![badge: Uses-IndexedDB](https://img.shields.io/badge/Uses-IndexedDB-orange) ![badge: Uses-Mongoose](https://img.shields.io/badge/Uses-Mongoose-orange) ![badge: Uses-Node.JS](https://img.shields.io/badge/Uses-Node.JS-orange)</br>
 
 Giving users a fast and easy way to track their money is important, but allowing them to access that information anytime is even more important. Having offline functionality is paramount to our applications success.
 
+The user will be able to add expenses and deposits to their budget with or without a connection. When entering transactions offline, they should populate the total when brought back online.
 
-## Acceptance Criteria
-GIVEN a user is on Budget App without an internet connection
-WHEN the user inputs a withdrawal or deposit
-THEN that will be shown on the page, and added to their transaction history when their connection is back online.
+## Table of Contents
+[Deployed Application](https://github.com/Rogers-Development-Services/PWA-Budget-Tracker#deployed-application)
 
-- - -
+[Installation](https://github.com/Rogers-Development-Services/PWA-Budget-Tracker#installation)
 
-## Commit Early and Often
+[Usage](https://github.com/Rogers-Development-Services/PWA-Budget-Tracker#usage)
 
-* One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
+[Screenshots](https://github.com/Rogers-Development-Services/PWA-Budget-Tracker#screenshots)
 
-1. Your commit history is a signal to employers that you are actively working on projects and learning new skills
+[Testing](https://github.com/Rogers-Development-Services/PWA-Budget-Tracker#testing)
 
-2. Your commit history allows you to revert your code base in the event that you need to return to a previous state
+[Future Updates](https://github.com/Rogers-Development-Services/PWA-Budget-Tracker#future-updates)
 
-* Follow these guidelines for committing:
+[Questions](https://github.com/Rogers-Development-Services/PWA-Budget-Tracker#questions)
 
-  * Make single purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits
+[Credits](https://github.com/Rogers-Development-Services/PWA-Budget-Tracker#credits)
 
-  * Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history
+[License](https://github.com/Rogers-Development-Services/PWA-Budget-Tracker#license)
 
-  * Don't commit half done work, for the sake of your collaborators (and your future self!)
+## Deployed Application
 
-  * Test your application before you commit to ensure functionality at every step in the development process
+Here is the [deployed application](https://mighty-reaches-52293.herokuapp.com/).
 
-* We would like you to have well over 200 commits by graduation, so commit early and often!
+## Installation
 
-* Deploy your application with [Heroku and MongoDB Atlas.](../04-Important/MongoAtlas-Deploy.md)
+Download this package, open your command line interface and run npm install. This should install the following dependencies aswell: Express, mongoose, path, and morgan. If for some reason, you need to install the dependencies individually run npm install "dependency_name".
 
-## Submission on BCS
+Next run the following command to install the app: 
 
-* You are required to submit the following:
+```bash
+npm install 
+```
 
-  * the URL to the deployed application
+```bash
+npm install express
+```
 
-  * the URL to the Github repository
+Note: This app is run on a Heroku server, it is not necessary to download.
 
+## Usage 
+
+If you have downloaded the repository and have cloned the package to your machine, and have installed all dependencies, begin by typing "npm run watch". 
+
+```bash
+npm run watch 
+```
+
+When you start the application, you will have two options to either deposite or withdrawl from your budget tracker app. Enter the ammount of money you'd like to track your current transaction whether online or offline and press your respective button. If you make a change offline and you want it to be synced with your online information, make sure you connect to the internet and refresh the application.
+
+Note: Don't use negative numbers when submitting a new transaction.
+
+### Screenshots
+
+![Deployed Application](https://user-images.githubusercontent.com/38272211/98400184-76d66c80-2018-11eb-920b-12b628b25c20.JPG)
+
+![Deployed Application1](https://user-images.githubusercontent.com/38272211/98400367-bbfa9e80-2018-11eb-8885-14264132385c.JPG)
+
+## Testing
+
+Testing Instructions: Currently, there are no written tests for this application, but if you wish to write your, change the scripts property in package json file.
+
+```bash
+npm install jest
+```
+
+```bash
+npm test
+```
+
+## Future Updates
+This application is a work in progress, future updates will include: 
+1. Set up the application's offline database to utilize local forage instead of indexedDB.
+
+## Questions
+
+Share with us with any comments or questions to help us grow! 
+
+GitHub Profile: 
+[Rogers-Development-Services](https://www.github.com/Rogers-Development-Services) | [Portfolio](https://rogers-development-services.github.io/Portfolio/index.html)
+
+
+Email: 
+[matthew.shane.rogers@gmail.com](matthew.shane.rogers@gmail.com)
+
+## Credits
+
+Code template provided by Trilogy Education 
+
+Thanks to [Steven Langraf](https://www.linkedin.com/in/slandgra/) for troubleshooting and debugging assistance.
+
+## Licenses
+Licensed under the MIT License lincense.
